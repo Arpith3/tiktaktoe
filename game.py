@@ -1,3 +1,4 @@
+#Copyright - Arpith Athreyas HS , [Git link]github.com/Arpith3
 '''tik tak toe is a game between two players . Here is the code to enable the game for those who want to play and learn ''' 
 
 places = []
@@ -17,9 +18,13 @@ def print_Board() :
     print( ' -------')
     print( ' |' + places[6] + '|' + places[7] + '|' +places[8] + '|')
     print( ' -------\n')
-
+"""
+#Draw situation is not handled
+#added a counter to avoid looping if draw
+"""
 #the main part of the program 
-while not winner :
+moves=0
+while not winner and moves<9:
     print_Board()
 
     if player_Turn :
@@ -29,12 +34,14 @@ while not winner :
 
     try:
         n = int(input(">> "))
+        #removed index out of bound error if n>9
+        if places[n - 1] == 'X' or places [n-1] == 'O':
+            print("illegal move, plase try again")
+            continue
     except:
         print("please enter a valid field")
         continue
-    if places[n - 1] == 'X' or places [n-1] == 'O':
-        print("illegal move, plase try again")
-        continue
+    
 
     if player_Turn :
         places[n - 1] = 'X'
@@ -42,7 +49,8 @@ while not winner :
         places[n - 1] = 'O'
 
     player_Turn = not player_Turn
-#checking for the possibility of winning 
+    moves+=1
+    #checking for the possibility of winning 
     for i in range (0, 3) :
         j = i * 3
         if (places[j] == places[(j + 1)] and places[j] == places[(j + 2)]) :
@@ -56,4 +64,9 @@ while not winner :
         winner = True
         print_Board()
 
-print (str(int(player_Turn + 1)) + " wins the game:)!\n")
+#if exit condition is moves, then winner will be false
+#else if exit is because of Bool-winner, it will be True
+if winner:
+    print (str(int(player_Turn + 1)) + " wins the game:)!\n")
+else:
+    print("Draw match")
