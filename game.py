@@ -1,60 +1,59 @@
 '''tik tak toe is a game between two players . Here is the code to enable the game for those who want to play and learn ''' 
 
-choices = []
+places = []
 
 for i in range (0, 9) :
-    choices.append(str(i+1))
+    places.append(str(i+1))
 
-playerOneTurn = True
+player_Turn = True
 winner = False
 
 #creating the board
-def printBoard() :
+def print_Board() :
     print( '\n -------')
-    print( ' |' + choices[0] + '|' + choices[1] + '|' + choices[2] + '|')
+    print( ' |' + places[0] + '|' + places[1] + '|' + places[2] + '|')
     print( ' -------')
-    print( ' |' + choices[3] + '|' + choices[4] + '|' + choices[5] + '|')
+    print( ' |' + places[3] + '|' + places[4] + '|' + places[5] + '|')
     print( ' -------')
-    print( ' |' + choices[6] + '|' + choices[7] + '|' + choices[8] + '|')
+    print( ' |' + places[6] + '|' + places[7] + '|' +places[8] + '|')
     print( ' -------\n')
 
 #the main part of the program 
 while not winner :
-    printBoard()
+    print_Board()
 
-    if playerOneTurn :
+    if player_Turn :
         print( "Player 1:")
     else :
         print( "Player 2:")
 
     try:
-        choice = int(input(">> "))
+        n = int(input(">> "))
     except:
         print("please enter a valid field")
         continue
-    if choices[choice - 1] == 'X' or choices [choice-1] == 'O':
+    if places[n - 1] == 'X' or places [n-1] == 'O':
         print("illegal move, plase try again")
         continue
 
-    if playerOneTurn :
-        choices[choice - 1] = 'X'
+    if player_Turn :
+        places[n - 1] = 'X'
     else :
-        choices[choice - 1] = 'O'
+        places[n - 1] = 'O'
 
-    playerOneTurn = not playerOneTurn
+    player_Turn = not player_Turn
 #checking for the possibility of winning 
     for i in range (0, 3) :
         j = i * 3
-        if (choices[j] == choices[(j + 1)] and choices[j] == choices[(j + 2)]) :
+        if (places[j] == places[(j + 1)] and places[j] == places[(j + 2)]) :
             winner = True
-            printBoard()
-        if (choices[i] == choices[(i + 3)] and choices[i] == choices[(i + 6)]) :
+            print_Board()
+        if (places[i] == places[(i + 3)] and places[i] == places[(i + 6)]) :
             winner = True
-            printBoard()
+            print_Board()
 
-    if((choices[0] == choices[4] and choices[0] == choices[8]) or 
-       (choices[2] == choices[4] and choices[4] == choices[6])) :
+    if((places[0] == places[4] and places[0] == places[8]) or (places[2] == places[4] and places[4] == places[6])) :
         winner = True
-        printBoard()
+        print_Board()
 
-print ("Player " + str(int(playerOneTurn + 1)) + " wins!\n")
+print (str(int(player_Turn + 1)) + " wins the game:)!\n")
