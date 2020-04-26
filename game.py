@@ -2,8 +2,8 @@
 
 choices = []
 
-for x in range (0, 9) :
-    choices.append(str(x+1))
+for i in range (0, 9) :
+    choices.append(str(i+1))
 
 playerOneTurn = True
 winner = False
@@ -11,11 +11,11 @@ winner = False
 #creating the board
 def printBoard() :
     print( '\n -------')
-    print( '  |' + choices[0] + '|' + choices[1] + '|' + choices[2] + '|')
+    print( ' |' + choices[0] + '|' + choices[1] + '|' + choices[2] + '|')
     print( ' -------')
-    print( '  |' + choices[3] + '|' + choices[4] + '|' + choices[5] + '|')
+    print( ' |' + choices[3] + '|' + choices[4] + '|' + choices[5] + '|')
     print( ' -------')
-    print( '  |' + choices[6] + '|' + choices[7] + '|' + choices[8] + '|')
+    print( ' |' + choices[6] + '|' + choices[7] + '|' + choices[8] + '|')
     print( ' -------\n')
 
 #the main part of the program 
@@ -43,12 +43,12 @@ while not winner :
 
     playerOneTurn = not playerOneTurn
 #checking for the possibility of winning 
-    for x in range (0, 3) :
-        y = x * 3
-        if (choices[y] == choices[(y + 1)] and choices[y] == choices[(y + 2)]) :
+    for i in range (0, 3) :
+        j = i * 3
+        if (choices[j] == choices[(j + 1)] and choices[j] == choices[(j + 2)]) :
             winner = True
             printBoard()
-        if (choices[x] == choices[(x + 3)] and choices[x] == choices[(x + 6)]) :
+        if (choices[i] == choices[(i + 3)] and choices[i] == choices[(i + 6)]) :
             winner = True
             printBoard()
 
